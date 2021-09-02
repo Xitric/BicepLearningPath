@@ -16,7 +16,7 @@ param env string
 // We use the storage bicep template as a module to break up the deployment into
 // smaller, reusable files. Bicep automatically verifies that all required
 // (non-default valued) parameters are passed
-module storage 'storage.bicep' = {
+module storage 'modules/storage.bicep' = {
   name: 'storageDeploy'
   // We can even specify the scope that each module is deployed to
   // scope: resourceGroup('somename')

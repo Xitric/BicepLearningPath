@@ -70,5 +70,7 @@ output storageId string = stmystorage001.id
 // opposed to existing at compile time) we access them like so
 output blobEndpoint string = stmystorage001.properties.primaryEndpoints.blob
 
-// We can also create loops based on ranges
+// We can also create loops based on ranges. The first parameter specifies the
+// start value, and the second specified the NUMBER OF items to generate (not
+// the upper limit)
 output archivedLogIds array = [for i in range(0, length(archivenames)): blobs[i].id]
