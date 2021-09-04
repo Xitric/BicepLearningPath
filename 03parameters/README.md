@@ -1,29 +1,4 @@
 # Bicep parameters and key vault
-## Deploy
-When having multiple sandbox subscriptions, first start by listing them using the following command:
-
-```powershell
-az account list --refresh --query "[?contains(name, 'Concierge Subscription')].id" --output table
-```
-
-Then choose the subsciprion to use by calling:
-
-```powershell
-az account set --subscription <id>
-```
-
-Lastly, specify the default resource group for deployment, which can be seen on the Azure portal:
-
-```powershell
-az configure --defaults group=<id>
-```
-
-Then deploy the template with:
-
-```powershell
-az deployment group create -f .\main.bicep --parameters main.parameters.dev.json
-```
-
 ## Parameters
 Parameters can be declared either as default values, from a parameter file, or from the command line arguments. This is also the order of precedence.
 
