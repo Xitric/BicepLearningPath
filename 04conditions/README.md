@@ -27,3 +27,10 @@ Then deploy the template with:
 ```powershell
 az deployment group create -f .\main.bicep
 ```
+
+## Loops
+Bicep supports the copy loop syntax on both resource declarations, properties, variables, and output statements - basically anywhere that accepts an array.
+Loops can also be nested, for instance if we use a loop on a property inside a resource definition which is itself a loop.
+
+Loops on variables are often used when we want to expose a simple configuration parameter to clients, but need to convert that to a more complex format internally.
+For instance, a flat parameter object with many properties can be turned into a complex nested object accepted by an Azure resource property.

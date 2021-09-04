@@ -71,3 +71,9 @@ resource sqlServerAudit 'Microsoft.Sql/servers/auditingSettings@2020-11-01-previ
     storageAccountAccessKey: auditingEnabled ? listKeys(auditStorageAccount.id, auditStorageAccount.apiVersion).keys[0].value : ''
   }
 }
+
+// Each database module outputs three properties, which become an array of
+// properties in the main bicep file
+output serverName string = sqlServer.name
+output location string = region
+output serverFullyQualifiedDomainName string = sqlServer.properties.fullyQualifiedDomainName
