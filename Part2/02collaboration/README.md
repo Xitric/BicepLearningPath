@@ -2,6 +2,7 @@
 ## Parameters
 - Name parameters to make both the resource they affect and the property they relate to clear.
 - Use default values whenever possible. Choose values that work in the majority of cases. If nothing else, the default values provide examples for users.
+    - Alternatively consider removing most default values and specify them in parameter files for different environments instead.
 - Specify descriptions and constraints on parameters when possible.
     - Only use the `@allowed()` constraint when there are functional reasons why only certain values are permitted for a template. In all other cases, consider using Azure Policies instead.
 - Rather than providing long lists of parameters for flexible Bicep templates, consider using configuration sets.
