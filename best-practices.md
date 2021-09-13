@@ -81,8 +81,8 @@ TODO: Decide on a tagging strategy, inspiration [here](https://docs.microsoft.co
 
 ## Documenting
 
-- Document only unique logic, complex expressions, or workarounds for odd behavior in the Azure Resource Manager.
-
 - Add a multi-line comment as a manifest at the top of each Bicep template to document its purpose, version, and responsible team members.
 
-Some resource types such as Azure policies and RBAC assignments include a description property for documenting their purpose. This must always be filled in for future reference.
+- Document only unique logic, complex expressions, or workarounds for odd behavior in the Azure Resource Manager.
+
+- Some resource types such as Azure policies and RBAC assignments include a description property for documenting their purpose. This must always be filled in for future reference.
