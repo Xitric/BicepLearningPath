@@ -6,6 +6,7 @@ Recommended file structure for Bicep templates:
 The more important resources should be at the top, with supporting resources towards the bottom.
 
 Related resources should also be placed close to one another within the Bicep template.
+This also applies to `existing` resources, which should be treated just like any other resource when structuring the Bicep template.
 
 ## Parameters
 
@@ -15,7 +16,7 @@ Related resources should also be placed close to one another within the Bicep te
 
 - Provide desciptions for all parameters, including any restrictions that may apply to values.
 
-    - To the extent possible, use constraints to enforce such restrictions.
+    - To the extent possible, use [parameter decorators](https://docs.microsoft.com/en-us/azure/azure-resource-manager/bicep/file#parameter-decorators) to enforce such restrictions.
 
 - Default values should be used whenever possible, if for nothing else to provide examples. These values should be chosen to be widely applicable, as well as safe and cheap for anyone to deploy.
 
@@ -47,9 +48,14 @@ Related resources should also be placed close to one another within the Bicep te
 
 ## Tagging
 
-- Use the standard set of tags for all resources throughout a Bicep template. These tags can be constructed in a variable for easy assignment across all resources.
+- Use a standard set of tags for all resources throughout a Bicep template:
 
-TODO: Decide on a tagging strategy, inspiration [here](https://docs.microsoft.com/en-us/azure/cloud-adoption-framework/ready/azure-best-practices/resource-tagging).
+    - `environment`: One of `test`, `dev`, `stage`, or `prod`.
+    - `workload`: The name of the workload related to the resource, or `shared` if the resource is not limited to a single workload.
+
+- Tags with values common to all resources in a template can be constructed in a variable for easy assignment across all resources.
+
+- Tags specific to each resource can be combined with the common tags using the `union()` bicep function.
 
 ## Resource definitions
 
@@ -81,8 +87,10 @@ TODO: Decide on a tagging strategy, inspiration [here](https://docs.microsoft.co
 
 ## Documenting
 
-- Add a multi-line comment as a manifest at the top of each Bicep template to document its purpose, version, and responsible team members.
-
-- Document only unique logic, complex expressions, or workarounds for odd behavior in the Azure Resource Manager.
+- Add a multi-line comment as a manifest at the top of each Bicep template to document its purpose.
 
 - Some resource types such as Azure policies and RBAC assignments include a description property for documenting their purpose. This must always be filled in for future reference.
+
+- For every variable, resource, and output, consider if it will provide value to document its purpose using the `@description()` decorator to improve IntelliSense. This decorator should not be used when the description of the resource is trivial or otherwise obvious.
+
+- Limit comments to documenting only unique logic, complex expressions, or workarounds for odd behavior in the Azure Resource Manager.
